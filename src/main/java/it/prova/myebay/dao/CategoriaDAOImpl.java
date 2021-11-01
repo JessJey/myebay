@@ -19,8 +19,8 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	@Override
 	public Optional<Categoria> findOne(Long id) throws Exception {
 		Categoria result = entityManager.find(Categoria.class, id);
-		//return result != null ? Optional.of(result) : Optional.empty();
-				return null;	}
+		return result != null ? Optional.of(result) : Optional.empty();
+			}
 
 	@Override
 	public void update(Categoria input) throws Exception {

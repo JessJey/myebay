@@ -25,8 +25,8 @@ public class RuoloDAOImpl implements RuoloDAO {
 	@Override
 	public Optional<Ruolo> findOne(Long id) throws Exception {
 		Ruolo result = entityManager.find(Ruolo.class, id);
-		//return result != null ? Optional.of(result) : Optional.empty();
-				return null;	}
+		return result != null ? Optional.of(result) : Optional.empty();
+			}
 
 	@Override
 	public void update(Ruolo ruoloInstance) throws Exception {

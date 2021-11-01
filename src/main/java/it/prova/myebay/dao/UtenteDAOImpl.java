@@ -34,8 +34,8 @@ public class UtenteDAOImpl implements UtenteDAO {
 	@Override
 	public Optional<Utente> findOne(Long id) throws Exception {
 		Utente result = entityManager.find(Utente.class, id);
-		//return result != null ? Optional.of(result) : Optional.empty();
-				return null;	}
+		return result != null ? Optional.of(result) : Optional.empty();
+	}
 
 	@Override
 	public void update(Utente utenteInstance) throws Exception {

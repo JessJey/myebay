@@ -24,8 +24,7 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 	@Override
 	public Optional<Annuncio> findOne(Long id) throws Exception {
 		Annuncio result = entityManager.find(Annuncio.class, id);
-		//return result != null ? Optional.of(result) : Optional.empty();
-				return null;
+		return result != null ? Optional.of(result) : Optional.empty();
 	}
 
 	@Override

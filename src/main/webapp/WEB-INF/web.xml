@@ -29,4 +29,34 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PrepareSearchAnnuncioServlet</display-name>
+    <servlet-name>PrepareSearchAnnuncioServlet</servlet-name>
+    <servlet-class>it.prova.myebay.web.servlet.annuncio.PrepareSearchAnnuncioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PrepareSearchAnnuncioServlet</servlet-name>
+    <url-pattern>/PrepareSearchAnnuncioServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExecuteSearchAnnuncioServlet</display-name>
+    <servlet-name>ExecuteSearchAnnuncioServlet</servlet-name>
+    <servlet-class>it.prova.myebay.web.servlet.annuncio.ExecuteSearchAnnuncioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExecuteSearchAnnuncioServlet</servlet-name>
+    <url-pattern>/ExecuteSearchAnnuncioServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExecuteVisualizzaAnnuncioServlet</display-name>
+    <servlet-name>ExecuteVisualizzaAnnuncioServlet</servlet-name>
+    <servlet-class>it.prova.myebay.web.servlet.annuncio.ExecuteVisualizzaAnnuncioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExecuteVisualizzaAnnuncioServlet</servlet-name>
+    <url-pattern>/ExecuteVisualizzaAnnuncioServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -18,8 +18,8 @@ private EntityManager entityManager;
 	@Override
 	public Optional<Acquisto> findOne(Long id) throws Exception {
 		Acquisto result = entityManager.find(Acquisto.class, id);
-		//return result != null ? Optional.of(result) : Optional.empty();
-		return null;
+		return result != null ? Optional.of(result) : Optional.empty();
+		
 	}
 
 	@Override
