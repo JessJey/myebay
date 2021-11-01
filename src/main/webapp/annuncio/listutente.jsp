@@ -59,6 +59,7 @@
 											<td>${annunciItem.aperto }</td>
 											<td>
 												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annunciItem.id }">Visualizza Dettagli Annuncio</a>
+											<a class="btn  btn-sm btn-outline-secondary" href="PrepareModificaUtenteAnnuncioServlet?idAnnuncio=${annunciItem.id }">Modifica Annuncio</a>
 											</td>
 										</tr>
 									</c:forEach>

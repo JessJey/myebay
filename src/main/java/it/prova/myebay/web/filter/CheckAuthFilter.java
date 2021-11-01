@@ -20,8 +20,11 @@ import it.prova.myebay.model.Utente;
 public class CheckAuthFilter implements Filter {
 
 	private static final String HOME_PATH = "";
-	private static final String[] EXCLUDED_URLS = {"/index.jsp","/login.jsp","/LoginServlet","/LogoutServlet","/assets/"};
+	private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/","/index.jsp",
+			"/annuncio/list.jsp","/ExecuteSearchsAnnuncioServlet", "/annuncio/search.jsp"};
 	private static final String[] PROTECTED_URLS = {"/admin/"};
+	private static final String[] PROTECTED_URLS_USER = {"/user/"};
+
 
 	public CheckAuthFilter() {
 	}
@@ -55,6 +58,12 @@ public class CheckAuthFilter implements Filter {
 				httpRequest.getRequestDispatcher("/home").forward(httpRequest, httpResponse);
 				return;
 			}
+			
+			if(isPathForOnlyUser(pathAttuale) && !utenteInSession.isUser()) {
+				httpRequest.setAttribute("messaggio", "Non si è autorizzati alla navigazione richiesta");
+				httpRequest.getRequestDispatcher("/home").forward(httpRequest, httpResponse);
+				return;
+			}
 		}
 
 		chain.doFilter(request, response);
@@ -82,8 +91,21 @@ public class CheckAuthFilter implements Filter {
 		}
 		return false;
 	}
+	
+	private boolean isPathForOnlyUser(String requestPath) {
+		for (String urlPatternItem : PROTECTED_URLS_USER) {
+			if (requestPath.contains(urlPatternItem)) {
+				return true;
+			}
+		}
+		for (String urlPatternItem : PROTECTED_URLS) {
+			if (requestPath.contains(urlPatternItem)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void destroy() {
 	}
-
 }

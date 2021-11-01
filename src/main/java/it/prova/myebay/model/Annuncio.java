@@ -47,6 +47,15 @@ public class Annuncio {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	public Annuncio(Long id, String testoAnnuncio, int prezzo) {
+		super();
+		this.id = id;
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+	}
+
+
 	public Annuncio(String testoAnnuncio, int prezzo, Date data, boolean aperto) {
 		super();
 		this.testoAnnuncio = testoAnnuncio;
