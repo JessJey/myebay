@@ -1,11 +1,17 @@
 package it.prova.myebay.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "ruolo")
@@ -22,6 +28,9 @@ public class Ruolo {
 	private String descrizione;
 	@Column(name = "codice")
 	private String codice;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ruoli")
+	private Set<Utente> utenti = new HashSet<Utente>();
 
 	public Ruolo() {
 	}

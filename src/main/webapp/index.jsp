@@ -55,10 +55,9 @@
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 			  </div>
-			  
-			  </div>
-			        <h2>Ricerca Annunci</h2>
-			        <div>
+			   <div class='card'>
+				    <div class='card-header'>
+				        <h1 class="display-5 fw-bold">Ricerca Annunci</h1>
 						<form method="post" action="ExecuteSearchAnnuncioServlet" class="row g-3"
 							novalidate="novalidate">
 
@@ -89,8 +88,13 @@
 							<div class="col-12">
 								<button type="submit" name="submit" value="submit" id="submit"
 									class="btn btn-navbar">Conferma</button>
+									</div>	
+									</form>
 							</div>
-							</form>
+							</div>
+							
+							
+						
 			  <!--  features di bootstrap 'Columns with icons'  -->
 			  <div class="container px-4 py-5" id="featured-3">
 			    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
