@@ -23,10 +23,10 @@ public class HomeServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione, non è stato possibile caricare le categorie.");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,10 +38,10 @@ public class HomeServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione, non è stato possibile caricare le categorie.");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 
 }

@@ -5,11 +5,13 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import it.prova.myebay.dao.AnnuncioDAO;
+import it.prova.myebay.dao.CategoriaDAO;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.web.listener.LocalEntityManagerFactoryListener;
 
-public class AnnuncioServiceImpl implements AnnuncioService{
+public class AnnuncioServiceImpl implements AnnuncioService {
 	private AnnuncioDAO annuncioDAO;
+	private CategoriaDAO categoriaDAO;
 
 	@Override
 	public List<Annuncio> listAll() throws Exception {
@@ -125,7 +127,6 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 		}
 	}
 
-
 	@Override
 	public void setAnnuncioDAO(AnnuncioDAO annuncioDAO) {
 		this.annuncioDAO = annuncioDAO;
@@ -143,6 +144,35 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 			return annuncioDAO.findByExample(example);
 
 		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+
+	@Override
+	public void inserisciAnnuncioConCategoria(Annuncio example, String[] categorieInstance) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// questo è come il MyConnection.getConnection()
+			entityManager.getTransaction().begin();
+
+			// uso l'injection per il dao
+			annuncioDAO.setEntityManager(entityManager);
+			categoriaDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			annuncioDAO.insert(example);
+
+			for (String categoriaItem : categorieInstance) {
+				example.getCategorie().add(categoriaDAO.findOne(Long.parseLong(categoriaItem)).orElse(null));
+			}
+
+			entityManager.getTransaction().commit();
+		} catch (Exception e) {
+			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
 		} finally {

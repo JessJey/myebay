@@ -61,6 +61,12 @@ public class Annuncio {
 		this.prezzo = prezzo;
 		this.data = data;
 	}
+	
+	public Annuncio(String testoAnnuncio, Date data) {
+		super();
+		this.testoAnnuncio = testoAnnuncio;
+		this.data = data;
+	}
 	public Annuncio(String testoAnnuncio, int prezzo) {
 		super();
 		this.testoAnnuncio = testoAnnuncio;
