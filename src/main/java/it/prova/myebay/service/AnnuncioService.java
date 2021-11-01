@@ -20,6 +20,8 @@ public interface AnnuncioService {
 	
 	public void inserisciAnnuncioConCategoria(Annuncio example, String[] categorieInstance) throws Exception;
 	
+	public List<Annuncio> findByExampleEager(Annuncio example) throws Exception;
+	
 	// per injection
 	public void setAnnuncioDAO(AnnuncioDAO annuncioDAO);
 }

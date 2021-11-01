@@ -1,8 +1,12 @@
 package it.prova.myebay.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import it.prova.myebay.dao.AnnuncioDAO;
 import it.prova.myebay.dao.CategoriaDAO;
@@ -179,4 +183,24 @@ public class AnnuncioServiceImpl implements AnnuncioService {
 			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
 		}
 	}
+	
+	@Override
+	public List<Annuncio> findByExampleEager(Annuncio example) throws Exception {
+		EntityManager entityManager = LocalEntityManagerFactoryListener.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			annuncioDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return annuncioDAO.findByExampleEager(example);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			LocalEntityManagerFactoryListener.closeEntityManager(entityManager);
+		}
+	}
+	
 }

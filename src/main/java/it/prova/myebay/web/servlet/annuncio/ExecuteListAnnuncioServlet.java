@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import it.prova.myebay.service.MyServiceFactory;
 
-@WebServlet("/user/ExecuteListAnnuncioServlet")
+@WebServlet("/ExecuteListAnnuncioServlet")
 public class ExecuteListAnnuncioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class ExecuteListAnnuncioServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
-			request.getRequestDispatcher("home").forward(request, response);
+			request.getRequestDispatcher("/home").forward(request, response);
 			return;
 		}
 

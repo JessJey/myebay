@@ -86,4 +86,40 @@ public class AnnuncioDAOImpl implements AnnuncioDAO{
 
 		return typedQuery.getResultList();
 	}
+	
+	@Override
+	public List<Annuncio> findByExampleEager(Annuncio example) throws Exception {
+		Map<String, Object> paramaterMap = new HashMap<String, Object>();
+		List<String> whereClauses = new ArrayList<String>();
+
+		StringBuilder queryBuilder = new StringBuilder("select a from Annuncio a join a.utenteInserimento u where a.id = a.id ");
+
+		if (StringUtils.isNotEmpty(example.getTestoAnnuncio())) {
+			whereClauses.add(" a.testoAnnuncio  like :testoAnnuncio ");
+			paramaterMap.put("testoAnnuncio", "%" + example.getTestoAnnuncio() + "%");
+		}
+		if (example.getPrezzo() < 0) {
+			whereClauses.add("a.prezzo >= :prezzo ");
+			paramaterMap.put("prezzo", example.getPrezzo());
+		}
+		if (example.getData() != null) {
+			whereClauses.add("a.data >= :data ");
+			paramaterMap.put("data", example.getData());
+		}
+		if (example.getUtenteInserimento().getId() != null) {
+			whereClauses.add("u.id = :idUtente ");
+			paramaterMap.put("idUtente", example.getUtenteInserimento().getId());
+		}
+
+		queryBuilder.append(!whereClauses.isEmpty() ? " and " : "");
+		queryBuilder.append(StringUtils.join(whereClauses, " and "));
+		TypedQuery<Annuncio> typedQuery = entityManager.createQuery(queryBuilder.toString(), Annuncio.class);
+
+		for (String key : paramaterMap.keySet()) {
+			typedQuery.setParameter(key, paramaterMap.get(key));
+		}
+
+		return typedQuery.getResultList();
+	}
+
 }
