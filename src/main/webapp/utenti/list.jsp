@@ -64,8 +64,8 @@
 											<td><fmt:formatDate type = "date" value = "${utentiItem.dateCreated}" /></td>
 											<td>
 											
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareModificaUtentiServlet?idUtente=${utentiItem.id}">Edit</a>
-												<a class="btn btn-outline-danger btn-sm" href="preparedelete">Delete</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/admin/PrepareModificaUtentiServlet?idUtente=${utentiItem.id}">Edit</a>
+											
 											</td>
 										</tr>
 									</c:forEach>

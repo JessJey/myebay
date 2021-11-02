@@ -54,6 +54,12 @@ public class Acquisto {
 		this.data = data;
 	}
 
+	
+	public Acquisto(Utente utenteAcquirente) {
+		super();
+		this.utenteAcquirente = utenteAcquirente;
+	}
+
 	public Long getId() {
 		return id;
 	}

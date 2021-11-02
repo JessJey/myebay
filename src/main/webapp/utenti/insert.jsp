@@ -51,7 +51,7 @@
 
 
 				
-							<form method="post" action="${pageContext.request.contextPath}/admin/ExecuteInsertUtenteServlet" class="row g-3" >
+							<form method="post" action="${pageContext.request.contextPath}/admin/ExecuteInsertUtentiServlet" class="row g-3" >
 							
 							
 								<div class="col-md-6">

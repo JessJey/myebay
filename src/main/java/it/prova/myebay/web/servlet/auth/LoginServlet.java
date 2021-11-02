@@ -1,6 +1,6 @@
 package it.prova.myebay.web.servlet.auth;
 
-import java.io.IOException;  
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.myebay.model.Utente;
 import it.prova.myebay.service.MyServiceFactory;
-
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -25,6 +25,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String idAnnuncio = request.getParameter("idAnnuncio");
 		String loginInput = request.getParameter("inputUsername");
 		String passwordInput = request.getParameter("inputPassword");
 
@@ -39,19 +40,23 @@ public class LoginServlet extends HttpServlet {
 		try {
 			Utente utenteInstance = MyServiceFactory.getUtenteServiceInstance().accedi(loginInput, passwordInput);
 			if (utenteInstance == null) {
+
 				request.setAttribute("errorMessage", "Utente non trovato.");
 				destinazione = "login.jsp";
 			} else {
 				request.getSession().setAttribute("userInfo", utenteInstance);
-				destinazione = "home";
+				destinazione = "index.jsp";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			destinazione = "login.jsp";
 			request.setAttribute("errorMessage", "Attenzione! Si è verificato un errore.");
 		}
-
-		request.getRequestDispatcher(destinazione).forward(request, response);
+		if (!NumberUtils.isCreatable(idAnnuncio)) {
+			response.sendRedirect(destinazione);
+			return;
+		}
+		response.sendRedirect("PrepareAcquistaServlet?idAnnuncio=" + idAnnuncio);
 
 	}
 

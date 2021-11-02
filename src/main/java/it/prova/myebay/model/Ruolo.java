@@ -29,8 +29,6 @@ public class Ruolo {
 	@Column(name = "codice")
 	private String codice;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "ruoli")
-	private Set<Utente> utenti = new HashSet<Utente>();
 
 	public Ruolo() {
 	}

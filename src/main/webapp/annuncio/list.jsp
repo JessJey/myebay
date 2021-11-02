@@ -53,14 +53,17 @@
 				                </thead>
 				                <tbody>
 				                	<c:forEach items="${annunci_list_attribute }" var="annunciItem">
+				                	<c:if test="${annunciItem.utenteInserimento.id != userInfo.id}">
 										<tr>
 											<td>${annunciItem.testoAnnuncio }</td>
 											<td>${annunciItem.prezzo }</td>
 											<td>${annunciItem.aperto }</td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annunciItem.id }">Visualizza Dettagli Annuncio</a>
+												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annunciItem.id }">Visualizza Dettagli Annuncio</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/PrepareAcquistaServlet?idAnnuncio=${annunciItem.id }">Acquista</a>
 											</td>
 										</tr>
+										</c:if>
 									</c:forEach>
 				                </tbody>
 				            </table>
@@ -71,7 +74,7 @@
 			<!-- end card -->
 			</div>	
 					 <div class='card-footer'>
-					        <a href="home" class='btn btn-outline-secondary' style='width:80px'>
+					        <a href="${pageContext.request.contextPath}/home" class='btn btn-outline-secondary' style='width:80px'>
 					            <i class='fa fa-chevron-left'></i> Back
 					        </a>
 					    </div>

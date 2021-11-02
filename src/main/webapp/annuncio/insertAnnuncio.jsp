@@ -50,7 +50,8 @@
 							<div class="col-md-6 custom-div-index">
 								<label>Inserisci il prezzo</label> <input type="number"
 									class="form-control custom-form-box" name="prezzo" id="prezzo"
-									placeholder="Inserire il prezzo">
+									placeholder="Inserire il prezzo"
+									value="${insert_annuncio_attr.prezzo }">
 							</div>
 							<hr class="custom-line-index">
 							<div class="checkbox mb-3">

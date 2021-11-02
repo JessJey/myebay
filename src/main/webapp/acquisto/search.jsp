@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -26,36 +24,36 @@
 			  
 			  <div class='card'>
 				    <div class='card-header'>
-				        <h5>Modifica Elemento</h5> 
+				        <h5>Ricerca elementi</h5> 
 				    </div>
 				    <div class='card-body'>
 		
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
 		
-							<form method="post" action="${pageContext.request.contextPath}/user/ExecuteModificaUtenteAnnuncioServlet" class="row g-3" >
+							<form method="post" action="${pageContext.request.contextPath}/user/ExecuteSearchAcquistoServlet" class="row g-3" >
 							
-								<input type="hidden" name="idAnnuncio" value="${update_annuncio_attr.id}">
+							
 								<div class="col-md-6">
-									<label>Testo Annuncio<span class="text-danger">*</span></label>
-									<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control" placeholder="Inserire il testo dell'annuncio " value="${update_annuncio_attr.testoAnnuncio}" >
+									<label>Descrizione</label>
+									<input type="text" name="descrizione" id="descrizione" class="form-control" placeholder="Inserire il testo dell'acquisto " value="${insert_acquisto_attr.descrizione}" >
 								</div>
 								
 								<div class="col-md-6">
-									<label>Prezzo:<span class="text-danger">*</span></label>-
-									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" value="${update_annuncio_attr.prezzo }" >
+									<label>Prezzo da:</label>
+									<input type="text" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" value="0" >
 								</div>
 								
-								<div class="col-md-6">
-								<label>Categorie<span class="text-danger">*</span></label><br>
-								<c:forEach items="${categorie_list_attribute}" var="categoriaItem">
-										<input type="checkbox" name="categoria" value="${categoriaItem.id}">${categoriaItem.descrizione}<br>
-									</c:forEach>
+								<div class="col-md-3">
+									<label>Data Creazione	</label>
+                        			<input class="form-control" id="data" type="date" placeholder="dd/MM/yy"
+                            			title="formato : gg/mm/aaaa"  name="data"  value="${parsedDate}" >
 								</div>
 								
 								
 							<div class="col-12">
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
+								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 							</div>
 		
 						</form>

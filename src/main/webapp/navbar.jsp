@@ -28,16 +28,30 @@
  			   			  <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/ExecuteListUtentiServlet">Lista Utenti</a></li>
  			  <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/PrepareSearchUtentiServlet">Ricerca Utenti</a></li>
  			  </c:if>
+ 			  <c:if test="${userInfo.isAdmin() || userInfo.isUser() }">
+ 			   <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/PrepareInsertAnnuncioServlet">Inserisci Annuncio</a></li>
+ 			  </c:if>
+ 			 	
             </ul> 
           </li>   
         </ul>
       </div>
       <div class="col-md-3 text-end">
       
-        <p class="navbar-text">Utente: ${userInfo.username }(${userInfo.nome } ${userInfo.cognome })
-     <a  href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
+        <p class="navbar-text">${userInfo.username } | Nome: ${userInfo.nome}
+     	
+     	<c:if test="${userInfo.isUser()}">
+     		<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a></p>
+     	</c:if>
+     	
+     	<c:if test="${!userInfo.isUser()}">
+     		<a href="${pageContext.request.contextPath}/login.jsp">Login</a></p>
+     	</c:if>
+      </div> 
+      
+      
+    
       </div>
-    </div>
   </nav>
 
   

@@ -55,13 +55,18 @@
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 			  </div>
-			   <div class='card'>
+			  <div class="p-5 mb-4 bg-light rounded-3">
+				      <div class="container-fluid py-5">
+				       
+				        <div class='card'>
 				    <div class='card-header'>
-				        <h1 class="display-5 fw-bold">Ricerca Annunci</h1>
-						<form method="post" action="ExecuteSearchAnnuncioServlet" class="row g-3"
-							novalidate="novalidate">
+				        <h7 class="display-5 fw-bold">Ricerca Annunci</h7>
+				        </div>
+				        
+				         <div class='card-body'>
+						<form method="post" action="${pageContext.request.contextPath}/ExecuteSearchAnnuncioServlet" class="row g-3">
 
-							<div class="col-md-6 custom-div-index">
+							<div class="col-md-6 ">
 								<label>Cerca per Testo:</label> <input type="text"
 									name="testoAnnuncio" id="testoAnnuncio"
 									class="form-control custom-form-box"
@@ -70,62 +75,85 @@
 
 							</div>
 							<hr class="custom-line-index">
-							<div class="col-md-6 custom-div-index">
+							<div class="col-md-6 ">
 								<label>Ricerca per prezzo</label> <input type="number"
-									class="form-control custom-form-box" name="prezzo" id="prezzo"
+									class="form-control custom-form-box" name="prezzo" value="0" id="prezzo"
 									placeholder="Inserire il prezzo minimo">
 							</div>
-							<hr class="custom-line-index">
-							<div class="checkbox mb-3">
+							<div class="col-md-6">
+							<label> Categorie</label>
+							<br>
 								<c:forEach items="${categoria_list_attribute }"
 									var="categoriaItem">
-									<label> <input type="checkbox" name="categoriaInput" class="custom-form-box"
+									<label> <input type="checkbox" name="categoriaInput" class="form-check-input"
 										value="${categoriaItem.id}"> ${categoriaItem.descrizione}
 									</label>
 									<br>
 								</c:forEach>
 							</div>
 							<div class="col-12">
-								<button type="submit" name="submit" value="submit" id="submit"
-									class="btn btn-navbar">Conferma</button>
+							<div class="col-12">
+								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
+								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
+							</div>
 									</div>	
 									</form>
 							</div>
 							</div>
-							
-							
+				      </div>
+			    </div>
+			  </div>
 						
 			  <!--  features di bootstrap 'Columns with icons'  -->
 			  <div class="container px-4 py-5" id="featured-3">
 			    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-			      <div class="feature col">
+			    
+			    <div class="feature col">
 			        <div class="feature-icon bg-primary bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
-			        
+			        </div>
+			         
+			        <h2>Visualizza Acquisti effettuati</h2>
+			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+			        <c:if test="${userInfo.isAdmin() || userInfo.isUser() }">
+			        <a href="${pageContext.request.contextPath}/user/PrepareSearchAcquistoServlet" class="icon-link">
+			          Vai alla funzionalità
+			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
+			        </a>
+			          </c:if>
 			      </div>
-			      </div>
+			      
 			      <div class="feature col">
 			        <div class="feature-icon bg-primary bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
 			        </div>
-			        <h2>Inserisci Nuovo Annuncio</h2>
+			         
+			        <h2>Gestione Annunci</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a href="PrepareInsertAnnuncioServlet" class="icon-link">
+			        <c:if test="${userInfo.isAdmin() || userInfo.isUser() }">
+			        <a href="${pageContext.request.contextPath}/user/PrepareSearchUtenteAnnuncioServlet" class="icon-link">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
+			          </c:if>
 			      </div>
-			      <div class="feature col">
+			      
+			       <div class="feature col">
 			        <div class="feature-icon bg-primary bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
 			        </div>
-			        <h2>Ricerca Film</h2>
+			         
+			        <h2>Gestione Utenti</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a href="PrepareSearchFilmServlet" class="icon-link">
+			        <c:if test="${userInfo.isAdmin() }">
+			        <a href="${pageContext.request.contextPath}/admin/PrepareSearchUtentiServlet" class="icon-link">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
+			          </c:if>
 			      </div>
+			      
+			    
 			    </div>
 			  </div>
 			  

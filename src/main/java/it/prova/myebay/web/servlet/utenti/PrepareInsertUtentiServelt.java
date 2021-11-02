@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.prova.myebay.model.Utente;
 
 
-@WebServlet("/admin/PrepareInsertUtentiServelt")
+@WebServlet("/admin/PrepareInsertUtentiServlet")
 public class PrepareInsertUtentiServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      

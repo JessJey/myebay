@@ -21,4 +21,6 @@ public interface AcquistoService {
 	
 	// per injection
 	public void setAcquistoDAO(AcquistoDAO acquistoDAO);
+
+	public List<Acquisto> findByExampleEager(Acquisto example) throws Exception;
 }

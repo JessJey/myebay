@@ -29,7 +29,7 @@ public class Annuncio {
 	@Column(name = "testoAnnuncio")
 	private String testoAnnuncio;
 	@Column(name = "prezzo")
-	private int prezzo;
+	private Integer prezzo;
 	@Column(name = "data")
 	private Date data;
 	@Column(name = "aperto")
@@ -82,6 +82,13 @@ public class Annuncio {
 		this.prezzo = prezzo;
 	}
 
+	
+	public Annuncio(Utente utenteInserimento) {
+		super();
+		this.utenteInserimento = utenteInserimento;
+	}
+
+
 	public Annuncio(String testoAnnuncio, int prezzo, Utente utenteInserimento) {
 		super();
 		this.testoAnnuncio = testoAnnuncio;
@@ -122,7 +129,7 @@ public class Annuncio {
 		return testoAnnuncio;
 	}
 
-	public int getPrezzo() {
+	public Integer getPrezzo() {
 		return prezzo;
 	}
 
@@ -150,7 +157,7 @@ public class Annuncio {
 		this.testoAnnuncio = testoAnnuncio;
 	}
 
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(Integer prezzo) {
 		this.prezzo = prezzo;
 	}
 

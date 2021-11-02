@@ -41,9 +41,25 @@
 		        <input type="checkbox" value="remember-me"> Remember me
 		      </label>
 		    </div>
-		    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-		    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
+		    <input type="hidden" name="idAnnuncio" value="${idAnnuncio}">
+		    <button class="w-100 btn btn-lg btn-dark" type="submit">Sign in</button>
 		  </form>
+		  <br>
+		  
+		  <form action="${pageContext.request.contextPath}/PrepareSignUpServlet" method="post">
+  				<button class="w-100 btn btn-lg btn-dark" type="submit">
+   					 Registrati
+  					</button>  
+		  </form>
+		  <br>
+		  
+		  <form action="${pageContext.request.contextPath}/index.jsp" method="post">
+  				<button class="w-100 btn btn-lg btn-dark" type="submit">
+   					 Entra come ospite
+  					</button>  
+		  </form>
+		  
+		  <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
 		</main>
 	
 	    

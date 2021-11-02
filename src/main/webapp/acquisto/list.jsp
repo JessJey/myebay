@@ -6,7 +6,7 @@
 	 <head>
 	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="/header.jsp" />
+	 	<jsp:include page="../header.jsp" />
 	   
 	   <title>Pagina dei Risultati</title>
 	 </head>
@@ -14,7 +14,7 @@
 	<body class="d-flex flex-column h-100">
 	 
 		<!-- Fixed navbar -->
-		<jsp:include page="/navbar.jsp"></jsp:include>
+		<jsp:include page="../navbar.jsp"></jsp:include>
 	 
 	
 		<!-- Begin page content -->
@@ -25,8 +25,8 @@
 				  ${successMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
-				<div class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-				  Esempio di operazione fallita!
+				<div class="alert alert-danger alert-dismissible fade show  ${errorMessage==null?'d-none':'' }" role="alert">
+				 ${errorMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 				<div class="alert alert-info alert-dismissible fade show d-none" role="alert">
@@ -41,28 +41,25 @@
 				        <h5>Lista dei risultati</h5> 
 				    </div>
 				    <div class='card-body'>
-				    <a class="btn btn-primary " href="${pageContext.request.contextPath}/user/PrepareInsertAnnuncioServlet">Add New</a>
+				    	
 				        <div class='table-responsive'>
 				            <table class='table table-striped ' >
 				                <thead>
 				                    <tr>
-			                         	<th>Annuncio</th>
+			                         	<th>Descrizione</th>
 				                        <th>Prezzo</th>
-				                        <th>Stato Annuncio</th>
+				                        <th>Data Acquisto</th>
 				                        <th>Azioni</th>
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<c:forEach items="${annunci_list_attribute }" var="annunciItem">
+				                	<c:forEach items="${acquisto_list_attribute }" var="acquistoItem">
 										<tr>
-											<td>${annunciItem.testoAnnuncio }</td>
-											<td>${annunciItem.prezzo }</td>
-											<td>${annunciItem.aperto }</td>
+											<td>${acquistoItem.descrizione }</td>
+											<td>${acquistoItem.prezzo }</td>
+											<td><fmt:formatDate type = "date" value = "${acquistoItem.data }" /></td>
 											<td>
-												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/ExecuteVisualizzaAnnuncioServlet?idAnnuncio=${annunciItem.id }">Visualizza Dettagli Annuncio</a>
-											<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/PrepareModificaUtenteAnnuncioServlet?idAnnuncio=${annunciItem.id }">Modifica Annuncio</a>
-								<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/user/PrepareDeleteUtenteAnnuncioServlet?idAnnuncio=${annunciItem.id }">Elimina Annuncio</a>
-											
+												<a class="btn  btn-sm btn-outline-secondary ml-2 mr-2" href="${pageContext.request.contextPath}/user/ExecuteVisualizzaAcquistoServlet?idAcquisto=${acquistoItem.id }">Visualizza</a>
 											</td>
 										</tr>
 									</c:forEach>
@@ -74,11 +71,7 @@
 			    </div>
 			<!-- end card -->
 			</div>	
-					 <div class='card-footer'>
-					        <a href="${pageContext.request.contextPath}/user/PrepareSearchUtenteAnnuncioServlet" class='btn btn-outline-secondary' style='width:80px'>
-					            <i class='fa fa-chevron-left'></i> Back
-					        </a>
-					    </div>
+		 
 		   
 		 <!-- end container -->  
 		  </div>
@@ -86,7 +79,7 @@
 		</main>
 		
 		<!-- Footer -->
-		<jsp:include page="/footer.jsp" />
+		<jsp:include page="../footer.jsp" />
 		
 	</body>
 </html>

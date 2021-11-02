@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.service.MyServiceFactory;
+import it.prova.myebay.utility.UtilityForm;
 
 @WebServlet("/ExecuteSearchAnnuncioServlet")
 public class ExecuteSearchAnnuncioServlet extends HttpServlet {
@@ -21,20 +22,29 @@ public class ExecuteSearchAnnuncioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String testoAnnuncioParam = request.getParameter("testoAnnuncio");
-		String prezzoParam = request.getParameter("prezzo");
+		String prezzo = request.getParameter("prezzo");
 		String[] categoriaInputParam = request.getParameterValues("categoriaInput");
 
+		int prezzoint;
+
+		if (prezzo == "")
+			prezzoint = 0;
+		else
+			prezzoint = Integer.parseInt(prezzo);
+
+		Annuncio example = new Annuncio(testoAnnuncioParam, prezzoint);
+
 		try {
-			Annuncio example = new Annuncio(testoAnnuncioParam, Integer.parseInt(prezzoParam));
 			request.setAttribute("annunci_list_attribute",
-					MyServiceFactory.getAnnuncioServiceInstance().findByExample(example));
+					MyServiceFactory.getAnnuncioServiceInstance().findByExampleEager(example, categoriaInputParam));
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", "Attenzione si è verificato un errore.");
+			request.setAttribute("errorMessage", "Attenzione si è verificato un errore nella ricerca.");
 			request.getRequestDispatcher("/home").forward(request, response);
 			return;
 		}
-		request.getRequestDispatcher("/annuncio/list.jsp").forward(request, response);
+		request.getRequestDispatcher("annuncio/list.jsp").forward(request, response);
+
 	}
 
 }
